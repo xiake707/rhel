@@ -1,0 +1,30 @@
+// named.rfc1912.zones:
+//
+// Provided by Red Hat caching-nameserver package 
+//
+// ISC BIND named zone configuration for zones recommended by
+// RFC 1912 section 4.1 : localhost TLDs and address zones
+// and https://tools.ietf.org/html/rfc6303
+// (c)2007 R W Franks
+// 
+// See /usr/share/doc/bind*/sample/ for example named configuration files.
+//
+// Note: empty-zones-enable yes; option is default.
+// If private ranges should be forwarded, add 
+// disable-empty-zone "."; into options
+// 
+
+zone "gqian.com" IN {
+	type master;
+	file "gqian.zone";
+	allow-update { none; };
+};
+zone "122.168.192.in-addr.arpa" IN {
+	type master;
+	file "zone.gqian";
+	allow-update { none; };
+};
+zone "." IN {
+	type hint;
+	file "named.ca";
+};

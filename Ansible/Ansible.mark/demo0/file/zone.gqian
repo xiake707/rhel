@@ -1,0 +1,14 @@
+$TTL 1D
+
+@  IN   SOA ns.gqian.com. admin.gqian.com. (
+			20260221
+			1H
+			15M
+			1W
+			1D
+		)
+
+     IN NS ns.gqian.com.
+101  IN PTR ns.gqian.com.
+18   IN PTR www.gqian.com.
+

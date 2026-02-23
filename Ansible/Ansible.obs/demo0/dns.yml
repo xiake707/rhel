@@ -1,0 +1,67 @@
+- name: 远程配置dns服务器
+  hosts: dnsserver
+  become: yes
+
+  tasks:
+    - name: 将/dev/sr0设备挂载到/mnt
+      mount:
+        src: /dev/sr0
+        path: /mnt
+        fstype: iso9660
+        opts: defaults
+        state: mounted
+    - name: 配置仓库配置文件
+      copy:
+        src: /etc/yum.repos.d/local.repo
+        dest: /etc/yum.repos.d/local.repo
+        owner: root
+        group: root
+        mode: '0644'
+    - name: 安装bind软件
+      dnf:
+        name: bind
+        state: latest
+    - name: 配置主配置文件
+      copy:
+        src: file/named.conf
+        dest: /etc/named.conf
+        owner: root
+        group: named
+        mode: '0640'
+        validate: '/usr/sbin/named-checkconf %s'
+    - name: 配置区域配置文件
+      copy:
+        src: file/named.rfc1912.zones
+        dest: /etc/named.rfc1912.zones
+        owner: root
+        group: named
+        mode: '0640'
+        validate: '/usr/sbin/named-checkconf %s'
+    - name: 配置区域文件
+      copy:
+        src: file/gqian.zone
+        dest: /var/named/gqian.zone
+        owner: root
+        group: named
+        mode: '0640'
+        validate: '/usr/sbin/named-checkzone gqian.com. %s'
+      copy:
+        src: file/zone.gqian
+        dest: /var/named/zone.gqian
+        owner: root
+        group: named
+        mode: '0640'
+        validate: '/usr/sbin/named-checkzone 122.168.192.in-addr.arpa %s'
+    - name: 防火墙放行服务
+      firewalld:
+        service: dns
+        permanent: yes
+        state: enabled
+        immediate: yes
+    - name: 重新启动dns服务
+      systemd:
+        name: named
+        state: restarted
+        daemon_reload: yes
+
+

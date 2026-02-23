@@ -1,0 +1,7 @@
+[client0]
+192.168.122.18
+[dnsserver]
+192.168.122.101
+[web:children]
+client0
+dnsserver

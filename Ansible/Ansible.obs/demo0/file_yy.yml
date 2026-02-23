@@ -1,0 +1,19 @@
+- name: 创建目录/opt/d1
+  hosts: client1
+  become: yes
+
+# 第二级：任务列表（干什么）
+  tasks:
+    - name: 创建目录/opt/d1
+      file:
+        path: /opt/d1
+        state: directory
+        mode: 0744
+    - name: 创建文件/opt/d1/f1
+      file:
+        path: /opt/d1/f1
+        state: touch 
+        mode: 0644
+
+
+

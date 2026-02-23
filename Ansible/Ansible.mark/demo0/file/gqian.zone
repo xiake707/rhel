@@ -1,0 +1,12 @@
+$TTL 1D
+@	IN SOA	ns.gqian.com admin.gqian.com. (
+					20260221	; serial
+					1D	; refresh
+					1H	; retry
+					1W	; expire
+					3H )	; minimum
+	        NS	ns.gqian.com.
+ns.gqian.com.	A	192.168.122.101
+www.gqian.com.  A       192.168.122.18
+@               MX 10   mail.gqian.com.
+mail            A       192.168.122.101

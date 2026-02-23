@@ -1,0 +1,12 @@
+- name: copy本地脚本到client0:/opt/d1
+  hosts: client0
+  become: yes
+  
+  tasks:
+    - name: cp本地文件到client0:/opt/d1
+      copy:
+        src: /root/test.sh
+        dest: /opt/d1/test.sh
+        owner: root
+        group: root
+        mode: 0655 
