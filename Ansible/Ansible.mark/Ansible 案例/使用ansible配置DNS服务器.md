@@ -120,7 +120,7 @@ enable=1
 
 >要用到dnf模块，
 
-**注意：** 这里使用`ansible-doc  dnf` 查询`dnf`模块的用法，详情请见[ansible-doc 输出信息解读](../Ansible#三、`ansible`中模块及其使用方法)
+**注意：** 这里使用`ansible-doc  dnf` 查询`dnf`模块的用法，详情请见[ansible-doc 输出信息解读](../Ansible.md#三、`ansible`中模块及其使用方法)
 
 ```shell
 EXAMPLES:
